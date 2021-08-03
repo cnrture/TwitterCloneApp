@@ -21,10 +21,41 @@
         android:id="@+id/signInFragment"
         android:name="com.canerture.twittercloneapp.fragments.SignInFragment"
         android:label="fragment_sign_in"
-        tools:layout="@layout/fragment_sign_in" />
+        tools:layout="@layout/fragment_sign_in" >
+        <action
+            android:id="@+id/action_signInFragment_to_signInSecondPageFragment"
+            app:destination="@id/signInSecondPageFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+        <action
+            android:id="@+id/action_signInFragment_to_signInForgetPasswordFragment"
+            app:destination="@id/signInForgetPasswordFragment" />
+    </fragment>
     <fragment
         android:id="@+id/signUpFragment"
         android:name="com.canerture.twittercloneapp.fragments.SignUpFragment"
         android:label="fragment_sign_up"
-        tools:layout="@layout/fragment_sign_up" />
+        tools:layout="@layout/fragment_sign_up" >
+        <action
+            android:id="@+id/action_signUpFragment_to_loginFragment"
+            app:destination="@id/loginFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInSecondPageFragment"
+        android:name="com.canerture.twittercloneapp.fragments.SignInSecondPageFragment"
+        android:label="SignInSecondPageFragment"
+        tools:layout="@layout/fragment_sign_in_second_page">
+        <action
+            android:id="@+id/action_signInSecondPageFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+        <action
+            android:id="@+id/action_signInSecondPageFragment_to_signInForgetPasswordFragment"
+            app:destination="@id/signInForgetPasswordFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/signInForgetPasswordFragment"
+        android:name="com.canerture.twittercloneapp.fragments.SignInForgetPasswordFragment"
+        android:label="SignInForgetPasswordFragment"
+        tools:layout="@layout/fragment_sign_in_forget_password"/>
 </navigation>
