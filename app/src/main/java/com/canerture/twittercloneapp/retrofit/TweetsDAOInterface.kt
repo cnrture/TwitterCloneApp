@@ -1,6 +1,5 @@
-package com.canerture.booksapp.retrofit
+package com.canerture.twittercloneapp.retrofit
 
-import com.canerture.twittercloneapp.response.BooksResponse
 import com.canerture.twittercloneapp.response.CRUDResponse
 import retrofit2.Call
 import retrofit2.http.Field
@@ -11,7 +10,7 @@ import retrofit2.http.POST
 interface TweetsDAOInterface {
 
     @GET("/all_books.php")
-    fun allBooks(): Call<BooksResponse>
+    fun allBooks(): Call<CRUDResponse>
 
     @POST("/add_book.php")
     @FormUrlEncoded
@@ -23,7 +22,7 @@ interface TweetsDAOInterface {
 
     @POST("/search_book.php")
     @FormUrlEncoded
-    fun searchBook(@Field("book_name") book_name: String): Call<BooksResponse>
+    fun searchBook(@Field("book_name") book_name: String): Call<CRUDResponse>
 
     @POST("/cart_status_change.php")
     @FormUrlEncoded

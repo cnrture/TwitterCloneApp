@@ -1,9 +1,5 @@
 package com.canerture.twittercloneapp.retrofit
 
-import com.canerture.booksapp.retrofit.RetrofitClient
-import com.canerture.booksapp.retrofit.TweetsDAOInterface
-import com.canerture.booksapp.retrofit.UsersDAOInterface
-
 class ApiUtils {
 
     companion object {

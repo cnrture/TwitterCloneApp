@@ -4,6 +4,14 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools">
 
+    <data>
+
+        <variable
+            name="signInFragmentObject"
+            type="com.canerture.twittercloneapp.fragments.SignInFragment" />
+
+    </data>
+
 <androidx.constraintlayout.widget.ConstraintLayout
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -26,6 +34,7 @@
         android:layout_height="0dp"
         android:layout_marginEnd="365dp"
         android:src="@drawable/cancel"
+        android:onClick="@{() -> signInFragmentObject.cancel()}"
         app:layout_constraintBottom_toBottomOf="@+id/twitterLogo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -45,7 +54,7 @@
         app:layout_constraintTop_toBottomOf="@+id/twitterLogo" />
 
     <EditText
-        android:id="@+id/editTextTextPersonName4"
+        android:id="@+id/emailphonenicknameEditText"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
@@ -75,6 +84,7 @@
         android:layout_marginBottom="10dp"
         android:text="Şifreni mi unuttun?"
         android:textColor="#03A9F4"
+        android:onClick="@{() -> signInFragmentObject.forgetPasswordText()}"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -86,6 +96,7 @@
         android:fontFamily="@font/roboto"
         android:text="İleri"
         android:textSize="12sp"
+        android:onClick="@{() -> signInFragmentObject.nextButton(emailphonenicknameEditText.getText().toString())}"
         app:cornerRadius="100dp"
         app:layout_constraintBottom_toBottomOf="@+id/forgetPasswordText"
         app:layout_constraintEnd_toEndOf="parent"

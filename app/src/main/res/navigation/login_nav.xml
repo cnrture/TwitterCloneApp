@@ -52,6 +52,9 @@
         <action
             android:id="@+id/action_signInSecondPageFragment_to_signInForgetPasswordFragment"
             app:destination="@id/signInForgetPasswordFragment" />
+        <argument
+            android:name="emailphonenickname"
+            app:argType="string" />
     </fragment>
     <fragment
         android:id="@+id/signInForgetPasswordFragment"

@@ -10,10 +10,6 @@
             name="signUpFragmentObject"
             type="com.canerture.twittercloneapp.fragments.SignUpFragment" />
 
-        <variable
-            name="signUpViewModeltObject"
-            type="com.canerture.twittercloneapp.viewmodels.SignUpViewModel" />
-
     </data>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -96,7 +92,8 @@
                 android:ems="10"
                 android:fontFamily="@font/roboto_medium"
                 android:hint="Kullanıcı adı"
-                android:inputType="textPersonName" />
+                android:inputType="textPersonName"
+                android:minHeight="48dp" />
 
             <EditText
                 android:id="@+id/phoneEditText"
@@ -170,7 +167,7 @@
             android:layout_marginBottom="2dp"
             android:layout_weight="0.5"
             android:backgroundTint="#03A9F4"
-            android:onClick="@{() -> signUpViewModeltObject.signUp(nameEditText.getText().toString(), nicknameEditText.getText().toString(), phoneEditText.getText().toString(), birthdayEditText.getText().toString(), mailEditText.getText().toString(), passwordEditText.getText().toString())}"
+            android:onClick="@{() -> signUpFragmentObject.signUp(nameEditText.getText().toString(), nicknameEditText.getText().toString(), phoneEditText.getText().toString(), birthdayEditText.getText().toString(), mailEditText.getText().toString(), passwordEditText.getText().toString())}"
             android:text="Kayıt Ol"
             android:textSize="10sp"
             app:cornerRadius="40dp"

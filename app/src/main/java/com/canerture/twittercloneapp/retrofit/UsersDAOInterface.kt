@@ -1,4 +1,4 @@
-package com.canerture.booksapp.retrofit
+package com.canerture.twittercloneapp.retrofit
 
 import com.canerture.twittercloneapp.response.CRUDResponse
 import com.canerture.twittercloneapp.response.UserResponse
@@ -20,7 +20,7 @@ interface UsersDAOInterface {
 
     @POST("/sign_in.php")
     @FormUrlEncoded
-    fun signIn(@Field("e_mail") e_mail: String,
+    fun signIn(@Field("emailphonenickname") emailphonenickname: String,
                @Field("password") password: String): Call<UserResponse>
 
 }
