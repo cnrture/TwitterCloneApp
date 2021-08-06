@@ -60,5 +60,9 @@
         android:id="@+id/signInForgetPasswordFragment"
         android:name="com.canerture.twittercloneapp.fragments.SignInForgetPasswordFragment"
         android:label="SignInForgetPasswordFragment"
-        tools:layout="@layout/fragment_sign_in_forget_password"/>
+        tools:layout="@layout/fragment_sign_in_forget_password">
+        <action
+            android:id="@+id/action_signInForgetPasswordFragment_to_signInFragment"
+            app:destination="@id/signInFragment" />
+    </fragment>
 </navigation>

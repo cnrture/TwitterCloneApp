@@ -3,11 +3,24 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/main_nav"
-    app:startDestination="@id/mainScreenFragment">
-
+    app:startDestination="@id/homeFragment">
     <fragment
-        android:id="@+id/mainScreenFragment"
-        android:name="com.canerture.twittercloneapp.fragments.MainScreenFragment"
-        android:label="fragment_main_screen"
-        tools:layout="@layout/fragment_main_screen" />
+        android:id="@+id/homeFragment"
+        android:name="com.canerture.twittercloneapp.fragments.HomeFragment"
+        android:label="HomeFragment" />
+    <fragment
+        android:id="@+id/searchFragment"
+        android:name="com.canerture.twittercloneapp.fragments.SearchFragment"
+        android:label="fragment_search"
+        tools:layout="@layout/fragment_search" />
+    <fragment
+        android:id="@+id/notificationsFragment"
+        android:name="com.canerture.twittercloneapp.fragments.NotificationsFragment"
+        android:label="fragment_notifications"
+        tools:layout="@layout/fragment_notifications" />
+    <fragment
+        android:id="@+id/directMessageFragment"
+        android:name="com.canerture.twittercloneapp.fragments.DmFragment"
+        android:label="fragment_direct_message"
+        tools:layout="@layout/fragment_direct_message" />
 </navigation>

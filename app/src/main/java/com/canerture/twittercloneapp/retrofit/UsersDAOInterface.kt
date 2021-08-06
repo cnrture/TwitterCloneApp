@@ -23,4 +23,12 @@ interface UsersDAOInterface {
     fun signIn(@Field("emailphonenickname") emailphonenickname: String,
                @Field("password") password: String): Call<UserResponse>
 
+    @POST("/password_change.php")
+    @FormUrlEncoded
+    fun passwordChange(@Field("id") id: Int,
+                       @Field("password") password: String): Call<CRUDResponse>
+
+    @POST("/search_user.php")
+    @FormUrlEncoded
+    fun searchUser(@Field("emailphonenickname") emailphonenickname: String): Call<UserResponse>
 }

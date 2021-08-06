@@ -1,6 +1,7 @@
 package com.canerture.twittercloneapp.retrofit
 
 import com.canerture.twittercloneapp.response.CRUDResponse
+import com.canerture.twittercloneapp.response.TweetResponse
 import retrofit2.Call
 import retrofit2.http.Field
 import retrofit2.http.FormUrlEncoded
@@ -9,8 +10,8 @@ import retrofit2.http.POST
 
 interface TweetsDAOInterface {
 
-    @GET("/all_books.php")
-    fun allBooks(): Call<CRUDResponse>
+    @GET("/all_tweets.php")
+    fun allTweets(): Call<TweetResponse>
 
     @POST("/add_book.php")
     @FormUrlEncoded

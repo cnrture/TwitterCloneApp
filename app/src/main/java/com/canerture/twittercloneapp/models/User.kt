@@ -5,6 +5,8 @@ import com.google.gson.annotations.SerializedName
 import java.io.Serializable
 
 data class User(@SerializedName("signincheck") @Expose var signincheck: Int,
+                @SerializedName("searchcheck") @Expose var searchcheck: Int,
+                @SerializedName("id") @Expose var id: Int,
                 @SerializedName("name") @Expose var name: String,
                 @SerializedName("nickname") @Expose var nickname: String,
                 @SerializedName("phone") @Expose var phone: String,

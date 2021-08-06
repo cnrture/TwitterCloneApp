@@ -15,11 +15,13 @@ class LoginRepository {
 
     private var userData = MutableLiveData<List<User>?>()
     private var signUpCheck = MutableLiveData<Int>()
+    private var passwordChangeCheck = MutableLiveData<Int>()
     private var usersDIF : UsersDAOInterface = ApiUtils.getUserDAOInterface()
 
     init {
         userData = MutableLiveData()
         signUpCheck = MutableLiveData()
+        passwordChangeCheck = MutableLiveData()
     }
 
     fun getUserData() : MutableLiveData<List<User>?> {
@@ -28,6 +30,10 @@ class LoginRepository {
 
     fun signUpCheck() : MutableLiveData<Int>{
         return signUpCheck
+    }
+
+    fun passwordChangeCheck() : MutableLiveData<Int>{
+        return passwordChangeCheck
     }
 
     fun signUp(name: String, nickname: String, phone: String, birthday: String, email: String, password: String) {
@@ -71,6 +77,42 @@ class LoginRepository {
 
     fun signOut() {
 
+    }
+
+    fun searchUser(emailphonenickname: String) {
+        usersDIF.searchUser(emailphonenickname).enqueue(object : Callback<UserResponse> {
+            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+                val tempUser = response.body()!!.users
+                if (tempUser[0].searchcheck == 1) {
+                    userData.value = tempUser
+                }   else {
+                    userData.value = null
+                }
+            }
+
+            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+                Log.e("Search User Error", t.localizedMessage!!.toString())
+            }
+
+        })
+    }
+
+    fun passwordChange(id: Int, password: String) {
+        usersDIF.passwordChange(id, password).enqueue(object : Callback<CRUDResponse> {
+            override fun onResponse(call: Call<CRUDResponse>, response: Response<CRUDResponse>) {
+                val temp = response.body()!!.success
+                if (temp == 1) {
+                    passwordChangeCheck.value = 1
+                }   else {
+                    passwordChangeCheck.value = 0
+                }
+            }
+
+            override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {
+                Log.e("Sign In Error", t.localizedMessage!!.toString())
+            }
+
+        })
     }
 
 }
