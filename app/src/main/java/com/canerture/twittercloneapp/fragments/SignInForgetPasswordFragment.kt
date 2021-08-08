@@ -5,6 +5,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.canerture.twittercloneapp.R
@@ -23,7 +24,7 @@ class SignInForgetPasswordFragment : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentSignInForgetPasswordBinding.inflate(inflater, container, false)
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_sign_in_forget_password, container, false)
         return binding.root
     }
 
@@ -34,8 +35,8 @@ class SignInForgetPasswordFragment : Fragment() {
 
         viewModel.userData.observe(viewLifecycleOwner) {
             if (it != null) {
-                binding.emailphonenicknameText.text = "Merhaba ${it[0].nickname}"
-                binding.id = it[0].id
+                binding.emailphonenicknameText.text = "Merhaba ${it.nickname}"
+                binding.id = it.id
                 binding.searchButton.visibility = View.INVISIBLE
                 binding.emailphonenicknameEditText.visibility = View.INVISIBLE
                 binding.savePasswordButton.visibility = View.VISIBLE
@@ -64,7 +65,7 @@ class SignInForgetPasswordFragment : Fragment() {
         viewModel.searchUser(emailphonenickname)
     }
 
-    fun passwordChange(id: Int, password: String) {
+    fun passwordChange(id: String, password: String) {
         viewModel.passwordChange(id, password)
     }
 }

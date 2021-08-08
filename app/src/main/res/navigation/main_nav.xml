@@ -7,20 +7,47 @@
     <fragment
         android:id="@+id/homeFragment"
         android:name="com.canerture.twittercloneapp.fragments.HomeFragment"
-        android:label="HomeFragment" />
+        android:label="HomeFragment" >
+        <action
+            android:id="@+id/action_homeFragment_to_addTweetFragment"
+            app:destination="@id/addTweetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/searchFragment"
         android:name="com.canerture.twittercloneapp.fragments.SearchFragment"
         android:label="fragment_search"
-        tools:layout="@layout/fragment_search" />
+        tools:layout="@layout/fragment_search" >
+        <action
+            android:id="@+id/action_searchFragment_to_addTweetFragment"
+            app:destination="@id/addTweetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/notificationsFragment"
         android:name="com.canerture.twittercloneapp.fragments.NotificationsFragment"
         android:label="fragment_notifications"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_notificationsFragment_to_addTweetFragment"
+            app:destination="@id/addTweetFragment" />
+    </fragment>
     <fragment
         android:id="@+id/directMessageFragment"
         android:name="com.canerture.twittercloneapp.fragments.DmFragment"
         android:label="fragment_direct_message"
         tools:layout="@layout/fragment_direct_message" />
+    <fragment
+        android:id="@+id/addTweetFragment"
+        android:name="com.canerture.twittercloneapp.fragments.AddTweetFragment"
+        android:label="fragment_add_tweet"
+        tools:layout="@layout/fragment_add_tweet" >
+        <action
+            android:id="@+id/action_addTweetFragment_to_homeFragment"
+            app:destination="@id/homeFragment" />
+        <action
+            android:id="@+id/action_addTweetFragment_to_searchFragment"
+            app:destination="@id/searchFragment" />
+        <action
+            android:id="@+id/action_addTweetFragment_to_notificationsFragment"
+            app:destination="@id/notificationsFragment" />
+    </fragment>
 </navigation>

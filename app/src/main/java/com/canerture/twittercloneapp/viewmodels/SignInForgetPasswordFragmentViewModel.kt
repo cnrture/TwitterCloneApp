@@ -12,7 +12,7 @@ class SignInForgetPasswordFragmentViewModel : ViewModel() {
 
     private var loginrepo = LoginRepository()
     var passwordChangeCheck = MutableLiveData<Int>()
-    var userData = MutableLiveData<List<User>?>()
+    var userData = MutableLiveData<User?>()
 
     init {
         passwordChangeCheck = loginrepo.passwordChangeCheck()
@@ -23,7 +23,7 @@ class SignInForgetPasswordFragmentViewModel : ViewModel() {
         loginrepo.searchUser(emailphonenickname)
     }
 
-    fun passwordChange(id: Int, password: String) {
+    fun passwordChange(id: String, password: String) {
         loginrepo.passwordChange(id, password)
     }
 

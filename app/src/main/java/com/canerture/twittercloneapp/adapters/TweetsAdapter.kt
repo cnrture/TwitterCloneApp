@@ -5,6 +5,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import com.canerture.twittercloneapp.databinding.TweetCardBinding
 import com.canerture.twittercloneapp.models.Tweet
+import com.squareup.picasso.Picasso
 
 class TweetsAdapter(private val tweetsList: List<Tweet>, private val clickedTweetListener: ClickedTweetListener):
     RecyclerView.Adapter<TweetsAdapter.TweetCardDesign>() {
@@ -25,6 +26,9 @@ class TweetsAdapter(private val tweetsList: List<Tweet>, private val clickedTwee
         holder.tweetCardBinding.tweetMenuText.setOnClickListener {
             clickedTweetListener.onClickedTweetListener(tweet, position)
         }
+
+        Picasso.get().load(tweet.profilepicture).into(holder.tweetCardBinding.profilePicture)
+        Picasso.get().load(tweet.tweetimage).into(holder.tweetCardBinding.tweetImage)
 
         holder.tweetCardBinding.tweetImage
     }

@@ -1,118 +1,136 @@
 package com.canerture.twittercloneapp.repos
 
+import android.content.ContentValues.TAG
+import android.graphics.Bitmap
+import android.net.Uri
 import android.util.Log
+import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
 import com.canerture.twittercloneapp.retrofit.UsersDAOInterface
 import com.canerture.twittercloneapp.models.User
 import com.canerture.twittercloneapp.response.CRUDResponse
 import com.canerture.twittercloneapp.response.UserResponse
 import com.canerture.twittercloneapp.retrofit.ApiUtils
+import com.google.firebase.Timestamp
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.firestore.ktx.firestore
+import com.google.firebase.ktx.Firebase
+import com.google.firebase.storage.ktx.storage
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
 class LoginRepository {
 
-    private var userData = MutableLiveData<List<User>?>()
-    private var signUpCheck = MutableLiveData<Int>()
+    private var userData = MutableLiveData<User?>()
     private var passwordChangeCheck = MutableLiveData<Int>()
-    private var usersDIF : UsersDAOInterface = ApiUtils.getUserDAOInterface()
+
+    private var auth: FirebaseAuth
+    private val db = Firebase.firestore
 
     init {
         userData = MutableLiveData()
-        signUpCheck = MutableLiveData()
         passwordChangeCheck = MutableLiveData()
+
+        auth = Firebase.auth
     }
 
-    fun getUserData() : MutableLiveData<List<User>?> {
+    fun getUserData() : MutableLiveData<User?> {
         return userData
-    }
-
-    fun signUpCheck() : MutableLiveData<Int>{
-        return signUpCheck
     }
 
     fun passwordChangeCheck() : MutableLiveData<Int>{
         return passwordChangeCheck
     }
 
-    fun signUp(name: String, nickname: String, phone: String, birthday: String, email: String, password: String) {
-        usersDIF.signUp(name, nickname, phone, birthday, email, password).enqueue(object : Callback<CRUDResponse> {
-            override fun onResponse(call: Call<CRUDResponse>, response: Response<CRUDResponse>) {
-                if (response.body()?.success == 1) {
-                    signUpCheck.value = 1
-                }   else {
-                    signUpCheck.value = 0
+    fun signUp(name: String, nickname: String, phone: String, birthday: String, email: String, password: String, imageName: String, selectedPicture: Uri?) {
+        auth.createUserWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    Log.d("Sign Up", "createUserWithEmail:success")
+
+                    val currentUser = auth.currentUser
+                    currentUser?.let { firebaseUser ->
+
+                        val storage = Firebase.storage
+                        val reference = storage.reference
+                        val imagesReference = reference.child("profilpictures").child(imageName)
+
+                        imagesReference.putFile(selectedPicture!!).addOnSuccessListener { taskSnapshot ->
+
+                            val uploadedPictureReference = storage.reference.child("profilpictures").child(imageName)
+                            uploadedPictureReference.downloadUrl.addOnSuccessListener { uri ->
+                                val profilPicUrl = uri.toString()
+
+                                val user = hashMapOf(
+                                    "id" to firebaseUser.uid,
+                                    "name" to name,
+                                    "nickname" to nickname,
+                                    "phone" to phone,
+                                    "birthday" to birthday,
+                                    "profilepic" to profilPicUrl
+                                )
+
+                                db.collection("users").document(firebaseUser.uid)
+                                    .set(user)
+                                    .addOnSuccessListener {
+                                        Log.d("success", "DocumentSnapshot added with ID: ${firebaseUser.uid}")
+                                    }
+                                    .addOnFailureListener { e ->
+                                        Log.w("error", "Error adding document", e)
+                                    }
+                            }
+                        }
+
+
+
+                    }
+                } else {
+                    Log.w("Sign Up", "createUserWithEmail:failure", task.exception)
                 }
             }
-
-            override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {
-                Log.e("Sign Up Error", t.localizedMessage!!.toString())
-                signUpCheck.value = 0
-            }
-
-        })
     }
 
-    fun signIn(emailphonenickname: String, password: String) {
-        usersDIF.signIn(emailphonenickname, password).enqueue(object : Callback<UserResponse> {
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                val tempUser = response.body()!!.users
+    fun signIn(email: String, password: String) {
 
-                if (tempUser[0].signincheck == 1) {
-                    userData.value = tempUser
-                }   else {
+        auth.signInWithEmailAndPassword(email, password).addOnCompleteListener { task ->
+                if (task.isSuccessful) {
+
+                    val currentUser = auth.currentUser
+
+                    val docRef = db.collection("users").document(currentUser!!.uid)
+                    docRef.get().addOnSuccessListener { document ->
+                            if (document != null) {
+                                userData.value = User(document.data?.get("id").toString(), document.data?.get("name").toString(), document.data?.get("nickname").toString(), document.data?.get("phone").toString(), document.data?.get("birthday").toString(), document.data?.get("profilepic").toString())
+                                Log.d(TAG, "DocumentSnapshot data: ${document.data}")
+                            } else {
+                                userData.value = null
+                                Log.d(TAG, "No such document")
+                            }
+                        }.addOnFailureListener { exception ->
+                            Log.d(TAG, "get failed with ", exception)
+                        }
+
+                    Log.d("Sign In", "signInWithEmail:success")
+
+                } else {
                     userData.value = null
+                    Log.w("Sing In", "signInWithEmail:failure", task.exception)
                 }
-
             }
-
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Log.e("Sign In Error", t.localizedMessage!!.toString())
-                userData.value = null
-            }
-
-        })
     }
 
     fun signOut() {
-
+        Firebase.auth.signOut()
     }
 
     fun searchUser(emailphonenickname: String) {
-        usersDIF.searchUser(emailphonenickname).enqueue(object : Callback<UserResponse> {
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
-                val tempUser = response.body()!!.users
-                if (tempUser[0].searchcheck == 1) {
-                    userData.value = tempUser
-                }   else {
-                    userData.value = null
-                }
-            }
 
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
-                Log.e("Search User Error", t.localizedMessage!!.toString())
-            }
-
-        })
     }
 
-    fun passwordChange(id: Int, password: String) {
-        usersDIF.passwordChange(id, password).enqueue(object : Callback<CRUDResponse> {
-            override fun onResponse(call: Call<CRUDResponse>, response: Response<CRUDResponse>) {
-                val temp = response.body()!!.success
-                if (temp == 1) {
-                    passwordChangeCheck.value = 1
-                }   else {
-                    passwordChangeCheck.value = 0
-                }
-            }
+    fun passwordChange(id: String, password: String) {
 
-            override fun onFailure(call: Call<CRUDResponse>, t: Throwable) {
-                Log.e("Sign In Error", t.localizedMessage!!.toString())
-            }
-
-        })
     }
 
 }

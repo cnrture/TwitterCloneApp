@@ -11,7 +11,7 @@ import com.google.android.material.snackbar.Snackbar
 class SignInSecondPageViewModel : ViewModel() {
 
     private var loginrepo = LoginRepository()
-    var userData = MutableLiveData<List<User>?>()
+    var userData = MutableLiveData<User?>()
 
     init {
         userData = loginrepo.getUserData()

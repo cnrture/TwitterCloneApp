@@ -14,6 +14,10 @@
             name="tweetsAdapter"
             type="com.canerture.twittercloneapp.adapters.TweetsAdapter" />
 
+        <variable
+            name="homeFragmentObject"
+            type="com.canerture.twittercloneapp.fragments.HomeFragment" />
+
     </data>
 
 <androidx.coordinatorlayout.widget.CoordinatorLayout
@@ -25,31 +29,80 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/storyRecyclerView"
+        <androidx.appcompat.widget.Toolbar
+            android:id="@+id/toolbar"
             android:layout_width="match_parent"
-            android:layout_height="30dp"
-            app:adapter="@{storyAdapter}"
+            android:layout_height="wrap_content"
+            android:background="@color/white"
+            android:minHeight="?attr/actionBarSize"
+            android:theme="?attr/actionBarTheme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            tools:orientation="horizontal">
+            app:layout_constraintTop_toTopOf="parent">
 
-        </androidx.recyclerview.widget.RecyclerView>
+            <androidx.cardview.widget.CardView
+                android:id="@+id/cardView"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center|start"
+                app:cardCornerRadius="250dp"
+                app:cardElevation="0dp"
+                tools:layout_editor_absoluteX="173dp"
+                tools:layout_editor_absoluteY="13dp">
+
+                <ImageView
+                    android:id="@+id/profilePicture"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+            </androidx.cardview.widget.CardView>
+
+            <ImageView
+                android:id="@+id/twitterLogo"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_gravity="center"
+                android:src="@drawable/twitter"
+                tools:layout_editor_absoluteX="191dp"
+                tools:layout_editor_absoluteY="13dp" />
+
+            <ImageView
+                android:layout_width="35dp"
+                android:layout_height="35dp"
+                android:layout_gravity="end"
+                android:src="@drawable/ic_baseline_star_border_24"
+                tools:layout_editor_absoluteX="381dp"
+                tools:layout_editor_absoluteY="13dp" />
+
+        </androidx.appcompat.widget.Toolbar>
+
+
+
+        <com.google.android.material.floatingactionbutton.FloatingActionButton
+            android:id="@+id/addTweetFAB"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="16dp"
+            android:backgroundTint="#03A9F4"
+            android:clickable="true"
+            android:contentDescription="Add Tweet"
+            android:onClick="@{() -> homeFragmentObject.addTweetFAB()}"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:srcCompat="@drawable/ic_baseline_add_24" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/tweetsRecyclerView"
             android:layout_width="match_parent"
             android:layout_height="0dp"
+            android:orientation="vertical"
             app:adapter="@{tweetsAdapter}"
+            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/storyRecyclerView"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-            android:orientation="vertical" />
+            app:layout_constraintTop_toBottomOf="@+id/toolbar" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
