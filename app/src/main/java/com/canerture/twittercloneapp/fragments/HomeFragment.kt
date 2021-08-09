@@ -10,11 +10,9 @@ import androidx.constraintlayout.widget.ConstraintLayout
 import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
-import com.canerture.twittercloneapp.CustomBottomSheetDialogFragment
 import com.canerture.twittercloneapp.R
 import com.canerture.twittercloneapp.adapters.TweetsAdapter
 import com.canerture.twittercloneapp.databinding.FragmentHomeBinding
-import com.canerture.twittercloneapp.databinding.TweetBottomSheetBinding
 import com.canerture.twittercloneapp.models.Tweet
 import com.canerture.twittercloneapp.viewmodels.HomeFragmentViewModel
 import com.google.android.material.bottomsheet.BottomSheetBehavior
@@ -46,7 +44,6 @@ class HomeFragment : Fragment(), TweetsAdapter.ClickedTweetListener {
 
         viewModel.tweetData.observe(viewLifecycleOwner) {
             val adapter = TweetsAdapter(it, this)
-            println(it)
             binding.tweetsAdapter = adapter
         }
 
@@ -56,7 +53,11 @@ class HomeFragment : Fragment(), TweetsAdapter.ClickedTweetListener {
         Navigation.findNavController(requireView()).navigate(R.id.action_homeFragment_to_addTweetFragment)
     }
 
-    override fun onClickedTweetListener(data: Tweet, pos: Int) {
-
+    override fun crfButtonsListener(commentrtfav: String, tweetDocId: String, currentlyCRFNumber: Int) {
+        when(commentrtfav) {
+            "comment" -> viewModel.commentTweet(tweetDocId, currentlyCRFNumber)
+            "rt" -> viewModel.rtTweet(tweetDocId, currentlyCRFNumber)
+            "fav" -> viewModel.favTweet(tweetDocId, currentlyCRFNumber)
+        }
     }
 }

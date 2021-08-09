@@ -71,9 +71,9 @@
         android:id="@+id/divider2"
         android:layout_width="match_parent"
         android:layout_height="1dp"
-        android:layout_marginBottom="8dp"
+        android:layout_marginBottom="4dp"
         android:background="?android:attr/listDivider"
-        app:layout_constraintBottom_toTopOf="@+id/forgetPasswordText"
+        app:layout_constraintBottom_toTopOf="@+id/nextButton"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent" />
 
@@ -81,26 +81,25 @@
         android:id="@+id/forgetPasswordText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginBottom="10dp"
+        android:onClick="@{() -> signInFragmentObject.forgetPasswordText()}"
         android:text="Şifreni mi unuttun?"
         android:textColor="#03A9F4"
-        android:onClick="@{() -> signInFragmentObject.forgetPasswordText()}"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintBottom_toBottomOf="@+id/nextButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/nextButton" />
 
     <Button
         android:id="@+id/nextButton"
         android:layout_width="75dp"
-        android:layout_height="35dp"
+        android:layout_height="48dp"
         android:backgroundTint="#03A9F4"
         android:fontFamily="@font/roboto"
+        android:onClick="@{() -> signInFragmentObject.nextButton(emailphonenicknameEditText.getText().toString())}"
         android:text="İleri"
         android:textSize="12sp"
-        android:onClick="@{() -> signInFragmentObject.nextButton(emailphonenicknameEditText.getText().toString())}"
         app:cornerRadius="100dp"
-        app:layout_constraintBottom_toBottomOf="@+id/forgetPasswordText"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/forgetPasswordText" />
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
 

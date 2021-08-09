@@ -27,6 +27,7 @@ import androidx.databinding.DataBindingUtil
 import androidx.fragment.app.viewModels
 import com.canerture.twittercloneapp.viewmodels.AddTweetViewModel
 import com.google.android.material.snackbar.Snackbar
+import com.squareup.picasso.Picasso
 import java.io.IOException
 import java.util.*
 
@@ -52,6 +53,9 @@ class AddTweetFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         binding.addTweetFragmentObject = this
+
+        val prefences = requireActivity().getSharedPreferences("com.canerture.twittercloneapp", Context.MODE_PRIVATE)
+        Picasso.get().load(prefences.getString("profilepic", "null")).into(binding.profilePicture)
 
         registerLauncher()
 
@@ -79,7 +83,7 @@ class AddTweetFragment : Fragment() {
 
     private fun registerLauncher() {
         activityResultLauncher = registerForActivityResult(ActivityResultContracts.StartActivityForResult()) { result ->
-            if (result.resultCode == Activity.RESULT_OK) {
+            if (result.resultCode == RESULT_OK) {
                 val intentFromResult = result.data
                 if (intentFromResult != null) {
                     tweetImage = intentFromResult.data
@@ -87,10 +91,10 @@ class AddTweetFragment : Fragment() {
                         if (Build.VERSION.SDK_INT >= 28) {
                             val source = ImageDecoder.createSource(requireActivity().contentResolver, tweetImage!!)
                             selectedBitmap = ImageDecoder.decodeBitmap(source)
-                            binding.profilePicture.setImageBitmap(selectedBitmap)
+                            binding.tweetImage.setImageBitmap(selectedBitmap)
                         } else {
                             selectedBitmap = MediaStore.Images.Media.getBitmap(requireActivity().contentResolver, tweetImage)
-                            binding.profilePicture.setImageBitmap(selectedBitmap)
+                            binding.tweetImage.setImageBitmap(selectedBitmap)
                         }
                     } catch (e: IOException) {
                         e.printStackTrace()
@@ -100,11 +104,9 @@ class AddTweetFragment : Fragment() {
         }
         permissionLauncher = registerForActivityResult(ActivityResultContracts.RequestPermission()) { result ->
             if (result) {
-                //permission granted
                 val intentToGallery = Intent(Intent.ACTION_PICK, MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
                 activityResultLauncher.launch(intentToGallery)
             } else {
-                //permission denied
                 Toast.makeText(requireContext(), "Permisson needed!", Toast.LENGTH_LONG).show()
             }
         }
@@ -120,15 +122,21 @@ class AddTweetFragment : Fragment() {
         val name = prefences.getString("name", "null")
         val nickname = prefences.getString("nickname", "null")
 
-        if (tweetImage != null) {
+        if(tweetText.isNotEmpty()) {
+            if (tweetImage != null) {
 
-            println("girdi")
+                viewModel.addTweet(id!!, profilepic!!, name!!, nickname!!, tweetText, tweetImageName, tweetImage)
+                Navigation.findNavController(requireView()).navigate(R.id.action_addTweetFragment_to_homeFragment)
 
-            viewModel.addTweet(id!!, profilepic!!, name!!, nickname!!, tweetText, tweetImageName, tweetImage)
-
+            }   else {
+                viewModel.addTweet(id!!, profilepic!!, name!!, nickname!!, tweetText, "null", null)
+                Navigation.findNavController(requireView()).navigate(R.id.action_signUpFragment_to_loginFragment)
+            }
         }   else {
-            println("girmedi")
+            Snackbar.make(requireView(), "Lütfen metin giriniz!", 1000).show()
         }
+
+
     }
 
 

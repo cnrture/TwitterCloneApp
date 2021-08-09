@@ -16,8 +16,6 @@ import com.canerture.twittercloneapp.MainActivity
 import com.canerture.twittercloneapp.R
 import com.canerture.twittercloneapp.databinding.FragmentSignInSecondPageBinding
 import com.canerture.twittercloneapp.viewmodels.SignInSecondPageViewModel
-import com.canerture.twittercloneapp.viewmodels.SignInViewModel
-import com.canerture.twittercloneapp.viewmodels.SignUpViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SignInSecondPageFragment : Fragment() {

@@ -4,29 +4,40 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/cancel.xml" value="0.3594871794871795" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/comment.xml" value="0.2814814814814815" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/dm.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/home.xml" value="0.3769230769230769" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.36574074074074076" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/ic_baseline_favorite_border_24.xml" value="0.2814814814814815" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/ic_baseline_image_24.xml" value="0.3828125" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/ic_baseline_search_24.xml" value="0.3828125" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/ic_baseline_star_border_24.xml" value="0.36574074074074076" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/left_arrow.xml" value="0.3828125" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/notifications.xml" value="0.3828125" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/retweet.xml" value="0.2814814814814815" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/search.xml" value="0.3769230769230769" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/settings.xml" value="0.3828125" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/share.xml" value="0.3828125" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/drawable/twitter.xml" value="0.26481481481481484" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/activity_login.xml" value="0.3175925925925926" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/activity_main.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_add_tweet.xml" value="0.1" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_add_tweet.xml" value="0.33425925925925926" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_direct_message.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_home.xml" value="0.30277777777777776" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_login.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_main_screen.xml" value="0.36666666666666664" />
-        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_sign_in.xml" value="0.3489583333333333" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_search.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_sign_in.xml" value="0.33425925925925926" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_sign_in_forget_password.xml" value="0.3416666666666667" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_sign_in_second_page.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_sign_up.xml" value="0.31296296296296294" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/fragment_tweet_bottom_sheet.xml" value="0.33425925925925926" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/recycler_view_item.xml" value="0.3489583333333333" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/story_card.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/tweet_bottom_sheet.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/tweet_card.xml" value="0.30277777777777776" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/tweet_card_design.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/layout/who_to_follow_card.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/cnrture/Documents/GitHub/TwitterCloneApp/app/src/main/res/menu/bottom_menu.xml" value="0.36666666666666664" />
       </map>
     </option>

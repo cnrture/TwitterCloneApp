@@ -1,8 +1,13 @@
 package com.canerture.twittercloneapp.adapters
 
+import android.content.Context
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import androidx.navigation.Navigation
+import androidx.navigation.findNavController
 import androidx.recyclerview.widget.RecyclerView
+import com.canerture.twittercloneapp.R
 import com.canerture.twittercloneapp.databinding.TweetCardBinding
 import com.canerture.twittercloneapp.models.Tweet
 import com.squareup.picasso.Picasso
@@ -24,11 +29,25 @@ class TweetsAdapter(private val tweetsList: List<Tweet>, private val clickedTwee
         holder.tweetCardBinding.tweetObject = tweet
 
         holder.tweetCardBinding.tweetMenuText.setOnClickListener {
-            clickedTweetListener.onClickedTweetListener(tweet, position)
+            it.findNavController().navigate(R.id.action_homeFragment_to_tweetBottomSheetFragment)
+        }
+
+        holder.tweetCardBinding.commentButton.setOnClickListener {
+            clickedTweetListener.crfButtonsListener("comment", tweet.docId, tweet.comment.toIntOrNull()!!)
+        }
+
+        holder.tweetCardBinding.rtButton.setOnClickListener {
+            clickedTweetListener.crfButtonsListener("rt", tweet.docId, tweet.rt.toIntOrNull()!!)
+        }
+
+        holder.tweetCardBinding.favButton.setOnClickListener {
+            clickedTweetListener.crfButtonsListener("fav", tweet.docId, tweet.fav.toIntOrNull()!!)
         }
 
         Picasso.get().load(tweet.profilepicture).into(holder.tweetCardBinding.profilePicture)
-        Picasso.get().load(tweet.tweetimage).into(holder.tweetCardBinding.tweetImage)
+        if (tweet.tweetimage.isNotEmpty()) {
+            Picasso.get().load(tweet.tweetimage).into(holder.tweetCardBinding.tweetImage)
+        }
 
         holder.tweetCardBinding.tweetImage
     }
@@ -38,7 +57,7 @@ class TweetsAdapter(private val tweetsList: List<Tweet>, private val clickedTwee
     }
 
     interface ClickedTweetListener {
-        fun onClickedTweetListener(data: Tweet, pos: Int)
+        fun crfButtonsListener(commentrtfav: String, tweetDocId: String, currentlyCRFNumber: Int)
     }
 
 

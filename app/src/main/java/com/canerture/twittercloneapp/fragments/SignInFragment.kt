@@ -10,13 +10,11 @@ import androidx.fragment.app.viewModels
 import androidx.navigation.Navigation
 import com.canerture.twittercloneapp.R
 import com.canerture.twittercloneapp.databinding.FragmentSignInBinding
-import com.canerture.twittercloneapp.viewmodels.SignInViewModel
 import com.google.android.material.snackbar.Snackbar
 
 class SignInFragment : Fragment() {
 
     private lateinit var binding: FragmentSignInBinding
-    private val viewModel : SignInViewModel by viewModels()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,

@@ -11,6 +11,9 @@
         <action
             android:id="@+id/action_homeFragment_to_addTweetFragment"
             app:destination="@id/addTweetFragment" />
+        <action
+            android:id="@+id/action_homeFragment_to_tweetBottomSheetFragment"
+            app:destination="@id/tweetBottomSheetFragment" />
     </fragment>
     <fragment
         android:id="@+id/searchFragment"
@@ -50,4 +53,8 @@
             android:id="@+id/action_addTweetFragment_to_notificationsFragment"
             app:destination="@id/notificationsFragment" />
     </fragment>
+    <dialog
+        android:id="@+id/tweetBottomSheetFragment"
+        android:name="com.canerture.twittercloneapp.fragments.TweetBottomSheetFragment"
+        android:label="TweetBottomSheetFragment" />
 </navigation>

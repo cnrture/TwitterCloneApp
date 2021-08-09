@@ -1,25 +1,15 @@
 package com.canerture.twittercloneapp.repos
 
 import android.content.ContentValues.TAG
-import android.graphics.Bitmap
 import android.net.Uri
 import android.util.Log
-import android.widget.Toast
 import androidx.lifecycle.MutableLiveData
-import com.canerture.twittercloneapp.retrofit.UsersDAOInterface
 import com.canerture.twittercloneapp.models.User
-import com.canerture.twittercloneapp.response.CRUDResponse
-import com.canerture.twittercloneapp.response.UserResponse
-import com.canerture.twittercloneapp.retrofit.ApiUtils
-import com.google.firebase.Timestamp
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.ktx.auth
 import com.google.firebase.firestore.ktx.firestore
 import com.google.firebase.ktx.Firebase
 import com.google.firebase.storage.ktx.storage
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class LoginRepository {
 
