@@ -11,7 +11,7 @@
         android:title="Search" />
 
     <item
-        android:id="@+id/notificationFragment"
+        android:id="@+id/notificationsFragment"
         android:icon="@drawable/notifications"
         android:title="Notifications" />
 

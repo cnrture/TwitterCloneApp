@@ -61,7 +61,6 @@
                 android:id="@+id/profilePicture"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:onClick="@{() -> addTweetFragmentObject.selectImage()}"
                 android:scaleType="center"
                 app:srcCompat="@drawable/left_arrow" />
         </androidx.cardview.widget.CardView>

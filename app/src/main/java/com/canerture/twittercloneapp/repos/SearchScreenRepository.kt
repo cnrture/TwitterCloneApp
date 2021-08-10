@@ -3,6 +3,7 @@ package com.canerture.twittercloneapp.repos
 import android.util.Log
 import androidx.lifecycle.MutableLiveData
 import com.canerture.twittercloneapp.models.Agendas
+import com.canerture.twittercloneapp.models.SearchTopContent
 import com.canerture.twittercloneapp.models.WhatsGoingOn
 import com.canerture.twittercloneapp.models.WhoToFollow
 import com.google.firebase.firestore.Query
@@ -13,8 +14,9 @@ import com.google.firebase.storage.ktx.storage
 class SearchScreenRepository {
 
     private var agendasData = MutableLiveData<List<Agendas>>()
-    private var whatsGoingOnData = MutableLiveData<List<WhatsGoingOn>>()
+    private var whatsGoingOnData = MutableLiveData<WhatsGoingOn>()
     private var whoToFollowData = MutableLiveData<List<WhoToFollow>>()
+    private var searchTopContentData = MutableLiveData<SearchTopContent>()
 
     private val db = Firebase.firestore
     private var storage = Firebase.storage
@@ -24,6 +26,7 @@ class SearchScreenRepository {
         agendasData = MutableLiveData()
         whatsGoingOnData = MutableLiveData()
         whoToFollowData = MutableLiveData()
+        searchTopContentData = MutableLiveData()
         storage = Firebase.storage
         reference = storage.reference
     }
@@ -32,7 +35,7 @@ class SearchScreenRepository {
         return agendasData
     }
 
-    fun getWhatsGoingOnData() : MutableLiveData<List<WhatsGoingOn>> {
+    fun getWhatsGoingOnData() : MutableLiveData<WhatsGoingOn> {
         return whatsGoingOnData
     }
 
@@ -40,8 +43,12 @@ class SearchScreenRepository {
         return whoToFollowData
     }
 
+    fun getSearchTopContentData() : MutableLiveData<SearchTopContent> {
+        return searchTopContentData
+    }
+
     fun getAgendas() {
-        db.collection("agendas").orderBy("time", Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception ->
+        db.collection("agendas").addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 Log.e("exception", exception.localizedMessage!!.toString())
             } else {
@@ -69,7 +76,7 @@ class SearchScreenRepository {
     }
 
     fun getWhatsGoingOn() {
-        db.collection("whatsgoingon").orderBy("time", Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception ->
+        db.collection("whatsgoingon").addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 Log.e("exception", exception.localizedMessage!!.toString())
             } else {
@@ -77,19 +84,15 @@ class SearchScreenRepository {
                 if (snapshot != null) {
                     if (!snapshot.isEmpty) {
 
-                        val whatsGoingOnTempList = arrayListOf<WhatsGoingOn>()
-
                         val documents = snapshot.documents
                         for (document in documents) {
                             val subject = document.get("subject") as String
                             val content = document.get("content") as String
                             val image = document.get("image") as String
 
-                            whatsGoingOnTempList.add(WhatsGoingOn(subject, content, image))
+                            whatsGoingOnData.value = WhatsGoingOn(subject, content, image)
 
                         }
-
-                        whatsGoingOnData.value = whatsGoingOnTempList
                     }
                 }
             }
@@ -97,7 +100,7 @@ class SearchScreenRepository {
     }
 
     fun getWhoToFollow() {
-        db.collection("whotofollow").orderBy("time", Query.Direction.DESCENDING).addSnapshotListener { snapshot, exception ->
+        db.collection("whotofollow").addSnapshotListener { snapshot, exception ->
             if (exception != null) {
                 Log.e("exception", exception.localizedMessage!!.toString())
             } else {
@@ -111,13 +114,37 @@ class SearchScreenRepository {
                         for (document in documents) {
                             val id = document.get("id") as String
                             val name = document.get("name") as String
-                            val profilpicture = document.get("profilpicture") as String
+                            val profilepicture = document.get("profilepicture") as String
 
-                            whoToFollowTempList.add(WhoToFollow(id, name, profilpicture))
+                            whoToFollowTempList.add(WhoToFollow(id, name, profilepicture))
 
                         }
 
                         whoToFollowData.value = whoToFollowTempList
+                    }
+                }
+            }
+        }
+    }
+
+    fun getSearchTopContent() {
+        db.collection("searchtopcontent").addSnapshotListener { snapshot, exception ->
+            if (exception != null) {
+                Log.e("exception", exception.localizedMessage!!.toString())
+            } else {
+
+                if (snapshot != null) {
+                    if (!snapshot.isEmpty) {
+
+                        val documents = snapshot.documents
+                        for (document in documents) {
+                            val subject = document.get("subject") as String
+                            val content = document.get("content") as String
+                            val image = document.get("image") as String
+
+                            searchTopContentData.value = SearchTopContent(subject, content, image)
+
+                        }
                     }
                 }
             }

@@ -49,7 +49,6 @@ class TweetsAdapter(private val tweetsList: List<Tweet>, private val clickedTwee
             Picasso.get().load(tweet.tweetimage).into(holder.tweetCardBinding.tweetImage)
         }
 
-        holder.tweetCardBinding.tweetImage
     }
 
     override fun getItemCount(): Int {

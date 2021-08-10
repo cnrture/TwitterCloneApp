@@ -61,10 +61,15 @@ class TweetRepository {
                             val fav = document.get("fav").toString()
 
                             val time = document.get("time") as Timestamp
-                            var date = "${Timestamp.now().toDate().hours - time.toDate().hours}s"
+                            val hoursDate = Timestamp.now().toDate().hours - time.toDate().hours
+                            var date = ""
 
-                            if (date == "0s") {
+                            if (hoursDate == 0) {
                                 date = "${Timestamp.now().toDate().minutes - time.toDate().minutes}dk"
+                            }   else if (hoursDate > 0) {
+                                date = "${hoursDate}s"
+                            }   else if (hoursDate < 0) {
+                                date = "${Timestamp.now().toDate().day - time.toDate().day}g"
                             }
 
                             tweetTempList.add(Tweet(docId, id, profilepic, name, nickname, date, tweetText, tweetImage, comment,rt,fav))

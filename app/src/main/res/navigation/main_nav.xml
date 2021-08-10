@@ -35,7 +35,7 @@
     </fragment>
     <fragment
         android:id="@+id/directMessageFragment"
-        android:name="com.canerture.twittercloneapp.fragments.DmFragment"
+        android:name="com.canerture.twittercloneapp.fragments.DirectMessageFragment"
         android:label="fragment_direct_message"
         tools:layout="@layout/fragment_direct_message" />
     <fragment

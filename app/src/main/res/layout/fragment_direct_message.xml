@@ -1,14 +1,149 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".fragments.DmFragment">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <data>
+
+        <variable
+            name="directMessageFragmentObject"
+            type="com.canerture.twittercloneapp.fragments.DirectMessageFragment" />
+
+        <variable
+            name="dmAdapter"
+            type="com.canerture.twittercloneapp.adapters.DmAdapter" />
+
+    </data>
+
+    <androidx.coordinatorlayout.widget.CoordinatorLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="match_parent">
 
-</FrameLayout>
+        <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.appcompat.widget.Toolbar
+                android:id="@+id/toolbar3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@color/white"
+                android:elevation="5dp"
+                android:gravity="center"
+                android:minHeight="45dp"
+                android:padding="5dp"
+                android:theme="?attr/actionBarTheme"
+                app:buttonGravity="center_vertical"
+                app:layout_scrollFlags="scroll|enterAlways">
+
+                <androidx.cardview.widget.CardView
+                    android:layout_width="250dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="center"
+                    app:cardCornerRadius="100dp"
+                    tools:layout_editor_absoluteX="16dp"
+                    tools:layout_editor_absoluteY="5dp">
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox.Dense"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        app:boxBackgroundColor="#E3E3E3"
+                        app:boxBackgroundMode="filled"
+                        app:boxStrokeColor="#03A9F4"
+                        app:boxStrokeWidth="0dp"
+                        app:endIconTint="#03A9F4"
+                        app:hintTextColor="#03A9F4"
+                        app:startIconTint="#03A9F4"
+                        tools:layout_editor_absoluteX="16dp">
+
+                        <com.google.android.material.textfield.TextInputEditText
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:hint="Kişi ve grupları ara"
+                            android:textSize="14sp" />
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                </androidx.cardview.widget.CardView>
+
+                <ImageView
+                    android:id="@+id/imageView2"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="end"
+                    android:layout_marginEnd="5dp"
+                    android:src="@drawable/settings"
+                    tools:layout_editor_absoluteX="376dp"
+                    tools:layout_editor_absoluteY="7dp" />
+
+                <androidx.cardview.widget.CardView
+                    android:id="@+id/cardView"
+                    android:layout_width="30dp"
+                    android:layout_height="30dp"
+                    android:layout_gravity="start"
+                    app:cardCornerRadius="250dp"
+                    app:cardElevation="0dp">
+
+                    <ImageView
+                        android:id="@+id/profilePicture"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:scaleType="centerCrop" />
+                </androidx.cardview.widget.CardView>
+
+            </androidx.appcompat.widget.Toolbar>
+        </com.google.android.material.appbar.AppBarLayout>
+
+        <androidx.core.widget.NestedScrollView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            app:layout_behavior="com.google.android.material.appbar.AppBarLayout$ScrollingViewBehavior">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                tools:context=".fragments.SearchFragment">
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/dmRecycleView"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="#FFFFFF"
+                    android:orientation="vertical"
+                    app:adapter="@{dmAdapter}"
+                    app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+        </androidx.core.widget.NestedScrollView>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <com.google.android.material.floatingactionbutton.FloatingActionButton
+                android:id="@+id/sendDmFAB"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginEnd="16dp"
+                android:layout_marginBottom="16dp"
+                android:backgroundTint="#03A9F4"
+                android:clickable="true"
+                android:contentDescription="Add Tweet"
+                android:onClick="@{() -> directMessageFragmentObject.sendDmFAB()}"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:srcCompat="@drawable/message" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+    </androidx.coordinatorlayout.widget.CoordinatorLayout>
+
+</layout>

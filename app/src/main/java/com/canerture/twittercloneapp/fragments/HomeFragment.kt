@@ -20,7 +20,6 @@ import com.squareup.picasso.Picasso
 
 class HomeFragment : Fragment(), TweetsAdapter.ClickedTweetListener {
 
-    private lateinit var bottomSheetBehavior: BottomSheetBehavior<ConstraintLayout>
     private lateinit var binding: FragmentHomeBinding
     private val viewModel : HomeFragmentViewModel by viewModels()
 

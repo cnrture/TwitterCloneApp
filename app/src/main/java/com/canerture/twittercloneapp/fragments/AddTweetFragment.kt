@@ -130,7 +130,7 @@ class AddTweetFragment : Fragment() {
 
             }   else {
                 viewModel.addTweet(id!!, profilepic!!, name!!, nickname!!, tweetText, "null", null)
-                Navigation.findNavController(requireView()).navigate(R.id.action_signUpFragment_to_loginFragment)
+                Navigation.findNavController(requireView()).navigate(R.id.action_addTweetFragment_to_homeFragment)
             }
         }   else {
             Snackbar.make(requireView(), "Lütfen metin giriniz!", 1000).show()

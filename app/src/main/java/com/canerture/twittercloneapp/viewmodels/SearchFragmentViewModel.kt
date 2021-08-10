@@ -1,35 +1,47 @@
 package com.canerture.twittercloneapp.viewmodels
 
 import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
 import com.canerture.twittercloneapp.models.Agendas
+import com.canerture.twittercloneapp.models.SearchTopContent
 import com.canerture.twittercloneapp.models.WhatsGoingOn
 import com.canerture.twittercloneapp.models.WhoToFollow
 import com.canerture.twittercloneapp.repos.SearchScreenRepository
 
-class SearchFragmentViewModel {
+class SearchFragmentViewModel: ViewModel() {
 
     private var searchrepo = SearchScreenRepository()
 
-    private var agendasData = MutableLiveData<List<Agendas>>()
-    private var whatsGoingOnData = MutableLiveData<List<WhatsGoingOn>>()
-    private var whoToFollowData = MutableLiveData<List<WhoToFollow>>()
+    var agendasData = MutableLiveData<List<Agendas>>()
+    var whatsGoingOnData = MutableLiveData<WhatsGoingOn>()
+    var whoToFollowData = MutableLiveData<List<WhoToFollow>>()
+    var searchTopContentData = MutableLiveData<SearchTopContent>()
 
     init {
+        getAgendasData()
+        getWhatsGoingOnData()
+        getWhoToFollowData()
+        getSearchTopContentData()
+    }
+
+    private fun getAgendasData() {
+        searchrepo.getAgendas()
         agendasData = searchrepo.getAgendasData()
+    }
+
+    private fun getWhatsGoingOnData() {
+        searchrepo.getWhatsGoingOn()
         whatsGoingOnData = searchrepo.getWhatsGoingOnData()
+    }
+
+    private fun getWhoToFollowData() {
+        searchrepo.getWhoToFollow()
         whoToFollowData = searchrepo.getWhoToFollowData()
     }
 
-    fun getAgendasData() {
-        searchrepo.getAgendas()
-    }
-
-    fun getWhatsGoingOnData() {
-        searchrepo.getWhatsGoingOn()
-    }
-
-    fun getWhoToFollowData() {
-        searchrepo.getWhoToFollow()
+    private fun getSearchTopContentData() {
+        searchrepo.getSearchTopContent()
+        searchTopContentData = searchrepo.getSearchTopContentData()
     }
 
 }
